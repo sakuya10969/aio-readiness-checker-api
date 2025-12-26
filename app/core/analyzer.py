@@ -1,6 +1,6 @@
 """LLM による詳細診断"""
 from openai import AzureOpenAI, RateLimitError
-from config import endpoint, deployment, subscription_key, api_version
+from app.config import endpoint, deployment, subscription_key, api_version
 import json
 
 
