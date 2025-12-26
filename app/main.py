@@ -10,6 +10,7 @@ from app.config import endpoint, deployment, subscription_key
 from app.core.extractor import extract_important_sections
 from app.core.scorer import calculate_scores
 from app.core.analyzer import analyze_page_with_llm, get_llm_scores
+from app.utils.markdown_utils import normalize_markdown
 
 app = FastAPI(title="AIO Readiness Checker API", version="1.0.0")
 
@@ -141,7 +142,7 @@ async def aio_check(request: CheckRequest):
                 reliability=scores.get("信頼性", 0),
                 structured_data=scores.get("構造化データ", 0),
                 consistency=scores.get("コンテンツ一貫性", 0),
-                llm_report=llm_report,
+                llm_report=normalize_markdown(llm_report),
             )
             results.append(result)
 
